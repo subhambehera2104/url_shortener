@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title>URL Shortener</title> 
+    
+</head>
+<body> 
+    <h1>URL Shortener</h1> 
+    <form action="{{ url_for('shorten_url') }}" method="POST">   
+        <label for="url">Enter your URL:</label>   
+        <input type="url" id="url" name="url" required> 
+        <button type="submit">Shorten</button>
+    </form>
+    {% if urls %}
+    <h2>Shortened URLs:</h2>
+    <ul>
+        {% for url in urls %}
+        <li><a href="short_url/{{ url.short_url }}"> localhost:5003/short_url/{{ url.short_url }}</a> - {{ url.original_url }}     <a  href="/delete/{{ url.id }}" style="color: white; background-color: red; height: 100px; width: 100px; border-radius: 3px;">Delete</a></li><br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
